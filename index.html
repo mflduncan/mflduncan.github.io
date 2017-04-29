@@ -17,7 +17,7 @@
 	<div id="ytas-video"></div>
 	<div id="ytas-controls-container">
 		<div id="ytas-controls">
-			<div id="ytas-controls-bottom">
+			<div id="ytas-controls-bottom" class="ytas-control-hidden">
 				<div id="ytas-seek-bar">
 					<div id="ytas-seek-total" class="percentbar ytas-control">
 						<div id="ytas-seek-watched" class="percentbar percent"></div>
@@ -38,6 +38,7 @@
 
 <script>
 var audioSwapPlayer = null;
+var showControlTimeout = null;
 
 function getUrlArgs()
 {
@@ -57,11 +58,11 @@ function onYouTubeIframeAPIReady() {
 		videoStart: parseInt(args.videostart || 0),
 		audioId: args.audio,
 		audioStart: parseInt(args.audiostart || 0),
-		width: 640,
+		width: 854,
 		height: 480,
 		autoplay: 1,
 		events: {
-			onSwitch: function(){document.getElementById('ytas-audio-container').style='display: none;';},
+			onSwitch: function(){document.getElementById('ytas-audio-container').classList.add('ytas-hidden');},
 			onReady: initPlayer
 		}
 	});
@@ -73,6 +74,8 @@ function initPlayer()
 	//document.getElementById('ytas-controls-container').addEventListener('click', togglePlayPause);
 	document.getElementById('ytas-play-button').addEventListener('click', togglePlayPause);
 	document.getElementById('ytas-seek-total').addEventListener('click', selectTime);
+	document.getElementById('ytas-player').addEventListener('mousemove', showControls);
+	
 	setInterval(updateTime, 33);
 }
 
@@ -126,10 +129,23 @@ function updateTime()
 	const time = audioSwapPlayer.getCurrentTime();
 	const duration = audioSwapPlayer.getDuration();
 	
-	seekWatched.style = 'width: ' + (time/duration)*100 + '%;';
+	seekWatched.style.width = ((time/duration)*100).toString() + '%';
 	timeCurrent.textContent = formatTimeString(time);
 	timeDuration.textContent = formatTimeString(duration);
 	
+}
+
+function showControls()
+{
+	if(showControlTimeout)
+		clearTimeout(showControlTimeout);
+	else{
+		document.getElementById('ytas-controls-bottom').classList.remove('ytas-control-hidden');
+	}
+	showControlTimeout = setTimeout(function(){
+		document.getElementById('ytas-controls-bottom').classList.add('ytas-control-hidden');
+		showControlTimeout = null;
+	}, 2000);
 }
 
 var tag = document.createElement('script');

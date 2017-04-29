@@ -1,13 +1,14 @@
 #ytas-player{
-	width: 640px;
+	width: 854px;
 	height: 480px;
 	margin: auto;
 	position: relative;
 	overflow: hidden;
+	background-color: black;
 }
 #ytas-controls-container{
-	width: 640px;
-	height: 480px;
+	width: 100%;
+	height: 100%;
 	position: absolute;
 	top: 0px;
 }
@@ -63,4 +64,17 @@
 }
 .ytas-control:hover{
    text-shadow: 0 0 7px rgba(255,255,255,0.5);
+}
+.ytas-control-hidden{
+	opacity: 0;
+	transition: opacity .5s ease-in;
+}
+.ytas-control-visible{
+	opacity: 1;
+	transition: opacity .5s ease-in;
+}
+.ytas-hidden{
+	visibility: hidden;
+	height: 0px;
+	width: 0px;
 }

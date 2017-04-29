@@ -46,7 +46,8 @@ function YTAudioSwapPlayer(playerArgs)
 		rel: 0,
 		showinfo: 0,
 		disablekb: 1,
-		modestbranding: 1
+		modestbranding: 1,
+		enablejsapi: 1,
 	}
 	
 	const videoPlayerVars = {start: this.videoStart, end: this.videoEnd};
@@ -70,7 +71,7 @@ function YTAudioSwapPlayer(playerArgs)
 		width: playerArgs.width,
 		playerVars: audioPlayerVars,
 		events: {
-			'onStateChange':  callStateChangedHandler,
+			'onStateChange':  callStateChangedHandler
 		}
 	};
 	this.audioPlayer = new YT.Player('ytas-audio', this.audioPlayerOptions);
