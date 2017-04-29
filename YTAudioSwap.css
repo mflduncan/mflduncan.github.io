@@ -1,0 +1,66 @@
+#ytas-player{
+	width: 640px;
+	height: 480px;
+	margin: auto;
+	position: relative;
+	overflow: hidden;
+}
+#ytas-controls-container{
+	width: 640px;
+	height: 480px;
+	position: absolute;
+	top: 0px;
+}
+#ytas-controls{
+	position: absolute;
+	bottom: 0px;
+	height: 60px;
+	width: 100%;
+}
+#ytas-controls-bottom{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.5em;
+	color: white;			
+	padding-right: 12px;
+	padding-left: 12px;
+	padding-top: 7px;
+	padding-bottom: 7px;				
+	position: relative;
+}
+#ytas-seek-bar{
+	padding-bottom: 7px;
+}
+.percentbar{
+	padding: 0px;
+	background-color: rgba(46,46,46,.75);
+	border-radius: 2px;
+	height: 5px;
+}
+.percentbar .percent{
+	padding: 0px;
+	background-color: white;
+	height: 5px;
+	width: 150px;
+	border-radius: 2px;
+}
+#ytas-time-current{
+	display: inline;
+	position: absolute;
+}
+#ytas-play-button{
+	position: absolute;
+	left: 50%;
+	margin-top: 5px;
+	margin-left: -9px;
+}
+#ytas-time-duration{
+	display: inline;
+	position: absolute;
+	right: 12px;	
+}
+.ytas-control{
+	cursor: pointer;
+}
+.ytas-control:hover{
+   text-shadow: 0 0 7px rgba(255,255,255,0.5);
+}

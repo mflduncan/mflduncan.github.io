@@ -1,0 +1,141 @@
+<html>
+<head>
+	<link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="YTAudioSwap.css" rel="stylesheet">
+	<script src="YTAudioSwap.js"></script>
+	<style>
+		
+		
+	</style>
+</head>
+<body>
+<div id="ytas-player">
+	<div id="ytas-audio-container">
+		<div id="ytas-audio" ></div>
+	</div>
+	<div id="ytas-video"></div>
+	<div id="ytas-controls-container">
+		<div id="ytas-controls">
+			<div id="ytas-controls-bottom">
+				<div id="ytas-seek-bar">
+					<div id="ytas-seek-total" class="percentbar ytas-control">
+						<div id="ytas-seek-watched" class="percentbar percent"></div>
+					</div>
+				</div>
+				<div id="ytas-main-controls">
+					<div id="ytas-time-current" class="timeDisplay">00:00</div>
+					<div id="ytas-play-button" class="ytas-control">
+						<a><i id="ytas-play-button-icon" class="fa fa-pause"></i></a>
+					</div>
+					<div id="ytas-time-duration">00:00</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+var audioSwapPlayer = null;
+
+function getUrlArgs()
+{
+	var args = location.search.substring(1).split('&'); //
+	var ret = {};
+	for(var i = 0; i < args.length; i++)
+	{
+		var keyValue = args[i].split('=');
+		ret[keyValue[0]] = keyValue[1];
+	}
+	return ret;
+}
+function onYouTubeIframeAPIReady() {
+	var args = getUrlArgs();
+	audioSwapPlayer = new YTAudioSwapPlayer({
+		videoId: args.video,
+		videoStart: parseInt(args.videostart || 0),
+		audioId: args.audio,
+		audioStart: parseInt(args.audiostart || 0),
+		width: 640,
+		height: 480,
+		autoplay: 1,
+		events: {
+			onSwitch: function(){document.getElementById('ytas-audio-container').style='display: none;';},
+			onReady: initPlayer
+		}
+	});
+	//initPlayer();	
+}
+
+function initPlayer()
+{
+	//document.getElementById('ytas-controls-container').addEventListener('click', togglePlayPause);
+	document.getElementById('ytas-play-button').addEventListener('click', togglePlayPause);
+	document.getElementById('ytas-seek-total').addEventListener('click', selectTime);
+	setInterval(updateTime, 33);
+}
+
+function togglePlayPause(event)
+{
+	const playerState = audioSwapPlayer.getPlayerState();
+	const playButtonIcon = document.getElementById('ytas-play-button-icon');
+	if(playerState === 1) // if it is playing (we choose video player because that is what they see)
+	{
+		audioSwapPlayer.pause();
+		playButtonIcon.classList.remove('fa-pause');
+		playButtonIcon.classList.add('fa-play');
+	}
+	else if(playerState === 2 || playerState === -1)
+	{
+		audioSwapPlayer.play();
+		playButtonIcon.classList.remove('fa-play');
+		playButtonIcon.classList.add('fa-pause');
+	}
+}
+
+function selectTime(event)
+{
+	const seekTotal = document.getElementById('ytas-seek-total');
+	const newTime = (event.offsetX/seekTotal.offsetWidth)*audioSwapPlayer.getDuration();
+	console.log(newTime);
+	
+	audioSwapPlayer.seekTo(newTime);
+}
+
+function formatTimeString(time)
+{
+	const minutes = Math.floor(time/60);
+	const seconds = Math.floor(time%60);
+	
+	var strSeconds;
+	var strMinutes = minutes.toString();
+	if(seconds >= 10)
+		strSeconds = seconds.toString();
+	else
+		strSeconds = '0' + seconds.toString();
+	
+	return strMinutes + ":" + strSeconds;
+}
+
+function updateTime()
+{
+	const timeCurrent = document.getElementById('ytas-time-current');
+	const timeDuration = document.getElementById('ytas-time-duration');
+	const seekWatched = document.getElementById('ytas-seek-watched');	
+	const time = audioSwapPlayer.getCurrentTime();
+	const duration = audioSwapPlayer.getDuration();
+	
+	seekWatched.style = 'width: ' + (time/duration)*100 + '%;';
+	timeCurrent.textContent = formatTimeString(time);
+	timeDuration.textContent = formatTimeString(duration);
+	
+}
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+</script>
+</body>
+</html>
