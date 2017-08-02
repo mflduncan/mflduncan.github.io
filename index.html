@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Michael Duncan</title>
+
+    <link rel="stylesheet" href="foundation/css/foundation.css">
+    <link rel="stylesheet" href="foundation-icons/foundation-icons/foundation-icons.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+      /* General */
+      body{
+        text-align: center;
+      }
+      .circular{
+        border-radius: 50%;
+      }
+      .section{
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+      .section .subheader{
+        /*margin-bottom: 40px;*/
+      }
+      .section.alternate{
+        background-color: #e6e6e6;
+      }
+      .hoverable{
+        border-radius: 3px;
+        transition: background .25s ease-in-out;
+      }
+      .hoverable:hover {
+          background: #f8f8f8;
+          cursor: pointer;
+          transition: background .25s ease-in-out;
+      }
+      .center-vertical{
+		align-items: center;
+      }
+	  .button.primary{
+		background-color: #7c43bd;
+		color: white;
+	  }
+	  .button.primary:hover{
+		background-color: #4a148c;
+		color: white;
+	  }
+	  .orbit-bullets button:hover{
+		background-color: #4a148c;
+	  }
+	  .orbit-bullets button.is-active{
+		background-color: #7c43bd;
+	  }
+	  .grid-container{
+		max-width: 68em;
+	  }
+	  
+      /*Header*/
+      .logo{
+        height: 50px;
+      }
+	  .logo-anchor{
+		padding: 0px !important;
+	  }
+      .navigation{
+        background-color: #12005e;
+      }
+      .navigation a{
+        color: white;
+      }
+      .navigation .menu{
+        background-color: #12005e;
+      }
+      .hero {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+        background-color: #4a148c;
+        padding: 2rem 0;
+      }
+      .hero h1{
+        color: white;
+        margin-bottom: 0px;
+      }
+	  .hero h4{
+		color: white;
+	  }
+      .hero-description {
+        list-style-type: none;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        margin: 0;
+      }
+      .hero-image{
+        height: 200px;
+        border-radius: 50%;
+      }
+      .portfolio-hero-header-menu {
+        list-style-type: none;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        margin: 0;
+      }
+
+      .portfolio-hero-header-menu li {
+        margin: 1.25rem;
+      }
+
+      .portfolio-hero-header-menu li a {
+        padding-left: 1.875rem;
+        padding-right: 1.875rem;
+      }
+
+      /*Console*/
+      #wnd {
+        background: #4a148c;
+        border-radius: .2em;
+        white-space: pre-wrap;
+        padding: .5em;
+        font-family: "Consolas", "Ubuntu Mono", "Monaco", monospace;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: left;
+        height: 475px;
+        margin-bottom: -475px;
+      }
+      .prompt, .cmd {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /*Project*/
+      .projects img{
+        height: 125px;
+        margin-bottom: 35px;
+        margin-top: 20px;
+      }
+	  
+	  .cell{
+		padding-top: 50px;
+		padding-bottom: 50px;
+	  }
+
+      /*Professional*/
+      .orbit-previous, .orbit-next{
+        background-color: rgba(10, 10, 10, 0.5);
+      }
+
+      /*About Me*/
+      .about-me p{
+        text-align: left;
+      }
+      .about-me blockquote{
+        font-size: 1.3em;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+	<div data-sticky-container>
+	<div id="header-bar" data-sticky  data-sticky-on="small" data-options="marginTop:0;" style="width:100%" data-top-anchor="1"> 
+    <div class="top-bar navigation">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <li><a class="logo-anchor" href="#" onClick="scrollTo('body')"><img class='logo' src='img/logo-white.svg'></a></li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <li><a href="#" onClick="scrollTo('#project-section')">Projects</a></li>
+          <li><a href="#" onClick="scrollTo('#professional-section')">Professional</a></li>
+          <li><a href="#" onClick="scrollTo('#about-me-section')">About Me</a></li>
+        </ul>
+      </div>
+    </div>
+	</div>
+	</div>
+
+    <div id="wnd" class="show-for-large"></div>
+    <div id="log"></div>
+
+    <textarea rows="11" cols="50" style="display: none;">
+    % npm install web-developers
+    downloading package... 100%
+    installing package... 100%
+    done
+    % node
+    &>
+    % let michael = require("MichaelDuncan")
+    % michael.init()
+    Hello world! I am a graduating developer from Spokane, WA
+    % michael.languages
+    ["Javascript", "C#", "C/C++"", "Python", "Java"]
+    % michael.education
+    Washington State University
+    ======== Go Cougs! ========
+    % michael.interests
+    ["Programming", "Piano", "Biking", "Swimming"]
+    % ^C
+    &
+    Press any key to continue...
+    </textarea>
+
+    <header class="hero">
+      <img class="hero-image" src="img/me.jpg"/>
+      <h1 class="hero-header">Michael Duncan</h1>
+      <h4 class="subheader">Software Engineer</h4>
+      <ul class="portfolio-hero-header-menu">
+        <li><a class="hollow button secondary" href="https://github.com/mflduncan"><i class='fa fa-github fa-5'></i>&nbsp;Github</a></li>
+        <li><a class="hollow button secondary" href="https://www.linkedin.com/in/michael-duncan-415966b8/"><i class='fa fa-linkedin fa-5'></i>&nbsp;LinkedIn</a></li>
+      </ul>
+    </header>
+
+
+
+
+
+    <div class="grid-container">
+
+      <!-- Projects -->
+      <div id="project-section" class="projects section">
+        <h2>Projects</h2>
+        <h4 class="subheader">Here are a few of the things I work on in my free time</h4>
+        <div class="grid-x grid-padding-x">
+          <div class="cell medium-4 hoverable">
+            <img src='img/bingbot2.png'>
+            <h3>Bing Bot</h3>
+            <p>Uses C# and PhantomJS Webdriver to get the maximum amount of Bing Rewards points every day. Performs random searches and even spoofs user agents to get the extra mobile and Microsoft Edge
+            searches. Supports multiple accounts, TOR functionality, and easy integration with Windows Scheduler.</p>
+            <a href="https://github.com/mflduncan/BingBot" class="button primary"><i class='fa fa-github fa-5'></i>&nbsp;Github</a>
+          </div>
+          <div class="cell medium-4 hoverable">
+            <img src='img/kissautoplay.png'>
+            <h3>Kiss Autoplay</h3>
+            <p>Multibrowser extension to improve user experience on a few popular video sharing website. Adds features such as lightboxed video, ad blocking, autoplay, auto-skips (for intro and outro),
+              and more. Grew to 1000+ users in less than 6 months and became one of the most popular extensions for the website.</p>
+            <a href="https://github.com/mflduncan/KissAutoplay" class="button primary"><i class='fa fa-github fa-5'></i>&nbsp;Github</a>
+          </div>
+          <div class="cell medium-4 hoverable">
+            <img src='img/wsu.png'>
+            <h3>Schedule Genie</h3>
+            <p>Web application that generates non-overlapping WSU class schedules tailored to user and displays in a visual planner-like interface. Allows user to navigate all possible schedules easily.
+              Uses .NET and SQLite backend with Bootstrap frontend to provide a fast, consistent user experience on all devices.</p>
+            <a href="http://michaeltesting.azurewebsites.net" class="button primary"><i class='fa fa-desktop fa-5'></i>&nbsp;Demo</a>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Professional -->
+      <div id="professional-section" class="professional section">
+        <h2>Professional</h2>
+        <h4 class="subheader">Here are a few examples of my work</h4>
+         <!-- Orbit -->
+         <div class="grid-x grid-padding-x">
+           <div class="cell">
+             <div class="orbit" role="region" aria-label="CougarManager Visual Rework" data-orbit>
+               <ul class="orbit-container" style="height: inherit;">
+                 <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+                 <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+                 <li class="is-active orbit-slide">
+                   <img class="orbit-image" src="img/CM/HomePageBlurredBefore.png">
+                   <figcaption class="orbit-caption">Home Page - Before</figcaption>
+                 </li>
+                 <li class="is-active orbit-slide">
+                   <img class="orbit-image" src="img/CM/HomePageBlurredAfter.png">
+                   <figcaption class="orbit-caption">Home Page - After</figcaption>
+                 </li>
+                 <li class="orbit-slide">
+                   <img class="orbit-image" src="img/CM/LogTimeWorkedBlurredBefore.png">
+                   <figcaption class="orbit-caption">Log Time - Before</figcaption>
+                 </li>
+                 <li class="orbit-slide">
+                   <img class="orbit-image" src="img/CM/LogTimeWorkedBlurredAfter.png">
+                   <figcaption class="orbit-caption">Log Time - After</figcaption>
+                 </li>
+                 <li class="orbit-slide">
+                   <img class="orbit-image" src="img/CM/ViewTimecardsBlurredBefore.png">
+                   <figcaption class="orbit-caption">View Timecards - Before</figcaption>
+                 </li>
+                 <li class="orbit-slide">
+                   <img class="orbit-image" src="img/CM/ViewTimecardsBlurredAfter.png">
+                   <figcaption class="orbit-caption">View Timecards - After</figcaption>
+                 </li>
+               </ul>
+               <nav class="orbit-bullets">
+                 <button class="is-active" data-slide="0"><span class="show-for-sr">Current Slide</span></button>
+                 <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
+                 <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
+                 <button data-slide="3"><span class="show-for-sr">Third slide details.</span></button>
+                 <button data-slide="4"><span class="show-for-sr">Third slide details.</span></button>
+                 <button data-slide="5"><span class="show-for-sr">Third slide details.</span></button>
+               </nav>
+             </div>
+           </div>
+         </div>
+      </div>
+      <hr>
+
+      <!-- About Me -->
+      <div id="about-me-section" class="about-me section">
+        <h2>About Me</h2>
+        <h4 class="subheader">A litte more about myself</h4>
+        <div class="grid-x grid-padding-x center-vertical">
+          <div class="cell medium-4">
+            <img class="circular" src="img/me outside.jpg" style="width: 100%; max-width: 300px;">
+          </div>
+          <div class="cell medium-8 align-left">
+            <p>Born and raised in the Inland Northwest, I’m a big fan of the great outdoors, rock music, and almost anything technology related. I started programming my freshman year of high school and have been in love with it ever since.
+             Curiosity has left me with a bit of experience in everything-- games, mods, desktop applications, mobile apps, and web-- but nowadays I mostly focus on web related projects. My favorite language to work in is Javascript
+             for the cross-platform compatibility and robust community-developed libraries, though C# and Python take a close second. My dream is to work for a fast-moving, innovative, web company within biking distance from home.
+            </p>
+          </div>
+        </div>
+        <blockquote>
+          Choose a job you love, and you will never have to work a day in your life.
+          <cite>Confucius</cite>
+        </blockquote>
+      </div>
+
+
+    </div>
+
+
+    <script src="foundation/js/vendor/jquery.js"></script>
+    <script src="foundation/js/vendor/what-input.js"></script>
+    <script src="foundation/js/vendor/foundation.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/q.js/1.0.0/q.js"></script>
+    <script>
+      var prompt;
+
+      function setPrompt(p)
+      {
+        prompt = p;
+      }
+
+      function addOutput(s) {
+        $('<div>').text(s).appendTo(wnd);
+        return Q.delay(100);
+      //  return addPrompt();
+      }
+
+      function addInput(s) {
+        var l = $('.prompt:last');
+      var e = $('<span>').addClass('cmd').appendTo(l);
+
+        return addLettersRecursive(e, s);
+      }
+
+      function addPrompt() {
+        var l = $('<div>').text(prompt).addClass('prompt').appendTo(wnd);
+        return Q.delay(900);
+      }
+
+      function addLettersRecursive(container, s) {
+        container.append(s.charAt(0)); // dangerous :(
+        var row_complete = Q.defer();
+        Q.delay(100).then(function() {
+          if (s.length <= 1) {
+            row_complete.resolve();
+          }
+          addLettersRecursive(container, s.substr(1)).then(function() {
+            row_complete.resolve();
+          })
+        });
+        return row_complete.promise;
+      }
+
+      $( document ).ready(function() {
+        $('textarea').hide();
+
+        setPrompt('michael@mflduncan.github.io %');
+        console.log("hello");
+        var lines = $('textarea').val().split('\n');
+
+        var promise = new Q();
+
+        promise = promise.then(function()
+        {
+          lines.forEach( function(item) {
+            item = item.replace(/^\s+/g, "");
+            if (item[0] == '%')
+            {
+              promise = promise.then(function()
+              { return addPrompt(); })
+              promise = promise.then(function()
+              { return addInput(item.substr(1)); })
+            }
+            else if(item[0] == '&')
+              {
+                promise = promise.then(function()
+              { return setPrompt(item.substr(1)); })
+              }
+            else
+            {
+              promise = promise.then(function()
+              { return addOutput(item); })
+            }
+          })
+        })
+        promise.done();
+
+      });
+    </script>
+    <script>$(document).foundation();</script>
+	<script>
+		function scrollTo(el){
+			console.log($(el), $('header-bar').outerHeight());
+			$('html, body').animate({
+				scrollTop: $(el).offset().top - $('#header-bar').outerHeight()
+			}, 500);
+		}
+	</script>
+  </body>
+</html>
